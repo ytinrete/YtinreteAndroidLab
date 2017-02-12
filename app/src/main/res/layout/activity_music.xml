@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="com.ytinrete.music.view.YtMusicActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/activity_music_bottom_panel"
+        android:layout_below="@+id/activity_music_appbar"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/activity_music_recycler_left"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/bg_round_rectangle_empty_blue">
+
+        </android.support.v7.widget.RecyclerView>
+
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/activity_music_recycler_right"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@drawable/bg_round_rectangle_empty_blue">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/activity_music_setting_panel"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/activity_music_appbar"
+        android:layout_marginTop="-42dp"
+        android:background="@color/md_blue_grey_300"
+        android:orientation="horizontal"
+        tools:layout_marginTop="-0dp">
+
+        <Button
+            android:id="@+id/activity_music_btn_select"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:text="select"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:id="@+id/activity_music_tv_root"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@color/md_white_1000"
+            android:gravity="center"
+            android:hint="please choose root first"
+            android:singleLine="true"
+            android:textSize="12sp"/>
+
+        <Button
+            android:id="@+id/activity_music_btn_scan"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:text="scan"
+            android:textSize="12sp"/>
+
+        <Button
+            android:id="@+id/activity_music_btn_clear"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:text="clear"
+            android:textSize="12sp"/>
+
+    </LinearLayout>
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/activity_music_appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay"/>
+
+    </android.support.design.widget.AppBarLayout>
+
+
+    <LinearLayout
+        android:id="@+id/activity_music_bottom_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/activity_music_tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:ellipsize="marquee"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textSize="14sp"/>
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@drawable/bg_round_rectangle_empty_blue"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/activity_music_tv_time_start"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:gravity="center"
+                android:text="--:--"
+                android:textSize="14sp"
+                tools:text="00:00"/>
+
+            <android.support.v7.widget.AppCompatSeekBar
+                android:id="@+id/activity_music_seek"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/activity_music_tv_time_end"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:gravity="center"
+                android:text="--:--"
+                android:textSize="14sp"
+                tools:text="00:00"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <Button
+                android:id="@+id/activity_music_btn_ok"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:layout_weight="2"
+                android:text="ok"
+                android:textSize="12sp"/>
+
+            <Button
+                android:id="@+id/activity_music_btn_pre"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:layout_weight="2"
+                android:text="pre"
+                android:textSize="12sp"/>
+
+
+            <Button
+                android:id="@+id/activity_music_btn_player"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:layout_weight="3"
+                android:text="ok"
+                android:textSize="12sp"/>
+
+
+            <Button
+                android:id="@+id/activity_music_btn_next"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:layout_weight="2"
+                android:text="nxt"
+                android:textSize="12sp"/>
+
+
+            <Button
+                android:id="@+id/activity_music_btn_del"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:layout_weight="2"
+                android:text="del"
+                android:textSize="12sp"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>
