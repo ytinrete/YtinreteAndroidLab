@@ -1,6 +1,8 @@
 package com.ytinrete.music.presenter;
 
 import android.content.DialogInterface;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.TextUtils;
 import android.widget.SeekBar;
 
@@ -44,7 +46,13 @@ public class YtMusicPresenter extends Presenter<YtMusicContracts.View> implement
       return;
     }
     //初始化
-    model.getLocalStoreMusicList();
+
+    (new Handler(Looper.getMainLooper())).post(new Runnable() {
+      @Override
+      public void run() {
+        model.getLocalStoreMusicList();
+      }
+    });
   }
 
   @Override

@@ -39,3 +39,9 @@ captures/
 
 # Keystore files
 *.jks
+
+# free line
+freeline
+freeline.py
+freeline_project_description.json
+freeline_core
