@@ -38,21 +38,14 @@ public class YtMusicPresenter extends Presenter<YtMusicContracts.View> implement
   }
 
   @Override
-  protected void onTakeView(YtMusicContracts.View view) {
-    super.onTakeView(view);
-
+  protected void onViewCreated() {
+    super.onViewCreated();
     if (getView() == null) {
       AppLog.e("fatal error, getview is null");
       return;
     }
     //初始化
-
-    (new Handler(Looper.getMainLooper())).post(new Runnable() {
-      @Override
-      public void run() {
-        model.getLocalStoreMusicList();
-      }
-    });
+    model.getLocalStoreMusicList();
   }
 
   @Override

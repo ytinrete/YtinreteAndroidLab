@@ -3,6 +3,7 @@ package com.ytinrete.mvp.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.ytinrete.mvp.factory.PresenterFactory;
@@ -63,6 +64,12 @@ public abstract class MvpActivity<P extends Presenter> extends AppCompatActivity
   }
 
   @Override
+  protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+    super.onPostCreate(savedInstanceState);
+    presenterDelegate.onViewCreated();
+  }
+
+  @Override
   protected void onSaveInstanceState(@NonNull Bundle outState) {
     super.onSaveInstanceState(outState);
     outState.putBundle(PRESENTER_STATE_KEY, presenterDelegate.onSaveInstanceState());
@@ -78,6 +85,18 @@ public abstract class MvpActivity<P extends Presenter> extends AppCompatActivity
   protected void onPause() {
     super.onPause();
     presenterDelegate.onPause();
+  }
+
+  @Override
+  protected void onStart() {
+    super.onStart();
+    presenterDelegate.onStart();
+  }
+
+  @Override
+  protected void onStop() {
+    super.onStop();
+    presenterDelegate.onStop();
   }
 
   @Override

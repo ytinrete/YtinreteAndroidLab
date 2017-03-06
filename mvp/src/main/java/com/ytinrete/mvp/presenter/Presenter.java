@@ -43,16 +43,21 @@ public class Presenter<View> {
   protected void onDestroy() {
   }
 
+  protected void onActivityNewIntent(Intent intent) {
+  }
+
+  protected void onActivityStart() {
+  }
+
+  protected void onActivityStop() {
+  }
+
   /**
    * This method is being called when a activity/frament resume
    * <p/>
    * This method is intended for overriding.
    */
   protected void onResume() {
-  }
-
-
-  protected void onNewIntent(Intent intent) {
   }
 
   /**
@@ -83,6 +88,15 @@ public class Presenter<View> {
    * @param view a view that should be taken
    */
   protected void onTakeView(View view) {
+  }
+
+  /**
+   * This method is being called after a view created.
+   * Normally this happens during {@link Activity#onStart()} }, {@link android.app.Fragment#onActivityCreated(Bundle)}
+   * <p/>
+   * This method is intended for overriding.
+   */
+  protected void onViewCreated() {
   }
 
   /**
@@ -174,8 +188,22 @@ public class Presenter<View> {
     onPause();
   }
 
+  /**
+   * when * {@link Activity#onStart()}
+   */
+  public void start(){
+    onActivityStart();
+  }
+
+  /**
+   * when * {@link Activity#onStop()}
+   */
+  public void stop(){
+    onActivityStop();
+  }
+
   public void newIntent(Intent intent) {
-    onNewIntent(intent);
+    onActivityNewIntent(intent);
   }
 
 
@@ -194,6 +222,13 @@ public class Presenter<View> {
   public void takeView(View view) {
     this.view = view;
     onTakeView(view);
+  }
+
+  /**
+   * after view created
+   */
+  public void viewCreated() {
+    onViewCreated();
   }
 
   /**

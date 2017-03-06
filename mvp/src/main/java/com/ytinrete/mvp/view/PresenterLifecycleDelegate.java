@@ -104,6 +104,16 @@ public final class PresenterLifecycleDelegate<P extends Presenter> {
   }
 
   /**
+   * {@link android.app.Activity#onPostCreate(Bundle)}, {@link android.app.Fragment#onActivityCreated(Bundle)}
+   */
+  public void onViewCreated() {
+    getPresenter();
+    if (presenter != null) {
+      presenter.viewCreated();
+    }
+  }
+
+  /**
    * {@link Activity#onDestroy()}, {@link Fragment#onDestroy()}, {@link android.view.View#onAttachedToWindow()}
    */
   public void onDropView() {
@@ -129,6 +139,18 @@ public final class PresenterLifecycleDelegate<P extends Presenter> {
   public void onPause() {
     if (presenter != null) {
       presenter.pause();
+    }
+  }
+
+  public void onStart() {
+    if (presenter != null) {
+      presenter.start();
+    }
+  }
+
+  public void onStop() {
+    if (presenter != null) {
+      presenter.stop();
     }
   }
 

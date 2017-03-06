@@ -71,6 +71,12 @@ public abstract class MvpFragment<P extends Presenter> extends Fragment implemen
   }
 
   @Override
+  public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+    super.onActivityCreated(savedInstanceState);
+    presenterDelegate.onViewCreated();
+  }
+
+  @Override
   public void onDestroyView() {
     super.onDestroyView();
     if (getActivity() != null) {
