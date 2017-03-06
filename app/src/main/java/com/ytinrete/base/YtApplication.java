@@ -3,6 +3,7 @@ package com.ytinrete.base;
 
 import android.app.Application;
 import android.content.Intent;
+import android.support.multidex.MultiDexApplication;
 
 import com.ytinrete.contract.YtApp;
 import com.ytinrete.db.YtDatabaseHelper;
@@ -13,7 +14,7 @@ import com.ytinrete.tools.AppLog;
  *
  */
 
-public class YtApplication extends Application {
+public class YtApplication extends MultiDexApplication {
 
   @Override
   public void onCreate() {

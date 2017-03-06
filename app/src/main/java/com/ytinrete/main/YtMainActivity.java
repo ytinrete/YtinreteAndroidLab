@@ -34,15 +34,12 @@ import java.io.IOException;
 
 import okio.BufferedSink;
 import okio.Okio;
-import tv.danmaku.ijk.media.example.application.Settings;
 
 public class YtMainActivity extends YtBaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
 
   private FloatingActionButton btn;
   private TextView res;
-
-  private Settings mSettings;
 
 
   @Override
@@ -72,7 +69,6 @@ public class YtMainActivity extends YtBaseActivity implements NavigationView.OnN
     navigationView.setNavigationItemSelectedListener(this);
 
     res = (TextView) findViewById(R.id.res);
-    mSettings = new Settings(this);
 
     btn = (FloatingActionButton) findViewById(R.id.action);
     btn.setOnClickListener(new View.OnClickListener() {
