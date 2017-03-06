@@ -34,7 +34,6 @@ import java.io.IOException;
 
 import okio.BufferedSink;
 import okio.Okio;
-import tv.danmaku.ijk.media.example.activities.VideoActivity;
 import tv.danmaku.ijk.media.example.application.Settings;
 
 public class YtMainActivity extends YtBaseActivity implements NavigationView.OnNavigationItemSelectedListener {

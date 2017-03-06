@@ -164,7 +164,7 @@ class Terminal(object):
     def __getattr__(self, attr):
         """Return a terminal capability, like bold.
 
-        For example, you can say ``term.bold`` to get the string that turns on
+        For tv.danmaku.ijk.media.example, you can say ``term.bold`` to get the string that turns on
         bold formatting and ``term.normal`` to get the string that turns it off
         again. Or you can take a shortcut: ``term.bold('hi')`` bolds its
         argument and sets everything to normal afterward. You can even combine

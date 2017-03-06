@@ -28,6 +28,6 @@ public class YtApplication extends Application {
     //初始化数据库
     YtDatabaseHelper.initRealm(this);
 
-
+    AppLog.d("PID:" + android.os.Process.myPid());
   }
 }

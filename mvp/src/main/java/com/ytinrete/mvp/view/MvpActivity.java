@@ -12,7 +12,7 @@ import com.ytinrete.mvp.presenter.Presenter;
 
 
 /**
- * This class is an example of how an activity could controls it's presenter.
+ * This class is an tv.danmaku.ijk.media.example of how an activity could controls it's presenter.
  * You can inherit from this class or copy/paste this class's code to
  * create your own view implementation.
  *

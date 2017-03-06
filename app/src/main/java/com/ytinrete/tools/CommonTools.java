@@ -20,5 +20,12 @@ public class CommonTools {
     return Math.round(px / (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
   }
 
+  public static int getPID(){
+    AppLog.d("PID:" + android.os.Process.myPid());
+    l.d("PID:" + android.os.Process.myPid());
+    l.d(Thread.currentThread().getName());
+    return android.os.Process.myPid();
+  }
+
 
 }

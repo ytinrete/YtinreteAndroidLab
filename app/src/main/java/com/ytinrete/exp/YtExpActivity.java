@@ -14,6 +14,8 @@ import com.ytinrete.db.orm.OrmMusicFileFolder;
 import com.ytinrete.db.orm.OrmMusicFileItem;
 import com.ytinrete.dto.DtoMusicFileFolder;
 import com.ytinrete.dto.DtoMusicFileItem;
+import com.ytinrete.multiproccess.MtpActivity0;
+import com.ytinrete.multiproccess.MtpActivity1;
 import com.ytinrete.music.service.YtMusicService;
 import com.ytinrete.music.view.YtMusicActivity;
 import com.ytinrete.tools.AppLog;
@@ -99,7 +101,9 @@ public class YtExpActivity extends YtBaseActivity {
 
     if(true){
 
-      startActivity(new Intent(YtExpActivity.this, YtMusicActivity.class));
+//      startActivity(new Intent(YtExpActivity.this, YtMusicActivity.class));
+
+      startActivity(new Intent(YtExpActivity.this, MtpActivity0.class));
 
       return;
     }
