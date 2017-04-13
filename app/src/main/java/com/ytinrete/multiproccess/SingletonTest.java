@@ -10,6 +10,8 @@ public class SingletonTest {
 
   private String str = "AAA";
 
+  private int anInt = 1;
+
   private SingletonTest() {
 
   }
@@ -31,5 +33,13 @@ public class SingletonTest {
 
   public void setStr(String str) {
     this.str = str;
+  }
+
+  public int getAnInt() {
+    return anInt;
+  }
+
+  public void setAnInt(int anInt) {
+    this.anInt = anInt;
   }
 }

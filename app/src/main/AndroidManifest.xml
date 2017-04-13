@@ -65,32 +65,39 @@
             android:enabled="true"/>
 
         <!-- multi process -->
-
-        <activity android:name="com.ytinrete.multiproccess.MtpActivity0">
-
-
-        </activity>
+        <provider
+            android:name="com.ytinrete.multiproccess.MtpMasterProvider"
+            android:authorities="com.ytinrete.content"
+            android:exported="false"/>
 
         <activity
-            android:name="com.ytinrete.multiproccess.MtpActivity1"
-            android:process=":test">
+            android:name="com.ytinrete.multiproccess.MtpMasterActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|layoutDirection"
+            android:screenOrientation="portrait"/>
 
-
-        </activity>
-
-        <activity android:name="com.ytinrete.multiproccess.MtpActivity2">
-
-
-        </activity>
-
-        <receiver
-            android:name="com.ytinrete.multiproccess.MtpBroadCastReceiver"
-            android:process=":test">
+        <service
+            android:name="com.ytinrete.multiproccess.MtpSlaveService"
+            android:exported="false"
+            android:process=":slave">
             <intent-filter>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+                <action android:name="com.ytinrete.android.lab.aidl"/>
             </intent-filter>
 
-        </receiver>
+        </service>
+
+        <service
+            android:name="com.ytinrete.multiproccess.MtpSlaveMessengerService"
+            android:exported="false"
+            android:process=":slave">
+
+        </service>
+
+
+        <activity
+            android:name="com.ytinrete.multiproccess.MtpSlaveActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|layoutDirection"
+            android:process=":slave"
+            android:screenOrientation="portrait"/>
 
 
     </application>

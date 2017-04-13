@@ -2,7 +2,6 @@ package com.ytinrete.exp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Message;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.widget.Button;
@@ -14,10 +13,7 @@ import com.ytinrete.db.orm.OrmMusicFileFolder;
 import com.ytinrete.db.orm.OrmMusicFileItem;
 import com.ytinrete.dto.DtoMusicFileFolder;
 import com.ytinrete.dto.DtoMusicFileItem;
-import com.ytinrete.multiproccess.MtpActivity0;
-import com.ytinrete.multiproccess.MtpActivity1;
-import com.ytinrete.music.service.YtMusicService;
-import com.ytinrete.music.view.YtMusicActivity;
+import com.ytinrete.multiproccess.MtpMasterActivity;
 import com.ytinrete.tools.AppLog;
 import com.ytinrete.widegt.FilePickerDialog;
 
@@ -28,7 +24,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.realm.Realm;
-import io.realm.RealmList;
 import io.realm.RealmResults;
 
 /**
@@ -99,11 +94,11 @@ public class YtExpActivity extends YtBaseActivity {
   public void onClick1() {
     showShortToast("btn1");
 
-    if(true){
+    if (true) {
 
 //      startActivity(new Intent(YtExpActivity.this, YtMusicActivity.class));
 
-      startActivity(new Intent(YtExpActivity.this, MtpActivity0.class));
+      startActivity(new Intent(YtExpActivity.this, MtpMasterActivity.class));
 
       return;
     }
@@ -242,8 +237,6 @@ public class YtExpActivity extends YtBaseActivity {
     ArrayList<DtoMusicFileFolder> folders = scan(testRes.getRes());
 
 
-
-
 //    HttpHelper.newCall(new MessageBoardGetListRequest()).enqueue(new StringCallback() {
 //      @Override
 //      public void onSuccess(String s, Response response, Call call) {
@@ -285,7 +278,7 @@ public class YtExpActivity extends YtBaseActivity {
 
 
     for (OrmMusicFileFolder f : fs) {
-        AppLog.d(f.getFolderName());
+      AppLog.d(f.getFolderName());
 
     }
 
@@ -295,8 +288,6 @@ public class YtExpActivity extends YtBaseActivity {
 //        fs.get(3).setFolderName("lalala");
 //      }
 //    });
-
-
 
 
 //    Message msg = new Message();

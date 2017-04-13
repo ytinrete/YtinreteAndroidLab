@@ -22,18 +22,25 @@ public class CommonTools {
     return Math.round(px / (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
   }
 
-  public static int getPID(){
+  public static int getPID() {
     AppLog.d("PID:" + android.os.Process.myPid());
-    l.d("PID:" + android.os.Process.myPid()+" Thread:"+Thread.currentThread().getName());
+
+    l.d("PID:" + android.os.Process.myPid() +
+        "UID:" + android.os.Process.myUid() +
+        "Tid:" + android.os.Process.myTid() +
+        " Thread:" + Thread.currentThread().getName() +
+        " " + Thread.currentThread().getId() +
+        " " + Thread.currentThread().getThreadGroup() +
+        " " + Thread.currentThread().getPriority());
     return android.os.Process.myPid();
   }
 
-  public static int getPID(Context context){
+  public static int getPID(Context context) {
     l.d(getCurProcessName(context));
     return getPID();
   }
 
-  private static String getCurProcessName(Context context) {
+  public static String getCurProcessName(Context context) {
     int pid = android.os.Process.myPid();
     String processNameString = "";
     ActivityManager mActivityManager = (ActivityManager) context.getSystemService(

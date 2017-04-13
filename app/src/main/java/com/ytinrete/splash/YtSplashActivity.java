@@ -15,6 +15,8 @@ import com.ytinrete.android.lab.R;
 import com.ytinrete.base.YtBaseActivity;
 import com.ytinrete.exp.YtExpActivity;
 import com.ytinrete.main.YtMainActivity;
+import com.ytinrete.tools.CommonTools;
+import com.ytinrete.tools.l;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -58,6 +60,11 @@ public class YtSplashActivity extends YtBaseActivity {
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_splash);
+
+    Thread.currentThread().setName("ytMainThread");
+    l.d("--------YtSplashActivity-------");
+    CommonTools.getPID(this);
+    l.d("--------YtSplashActivity-------");
 
     ButterKnife.bind(this);
 
