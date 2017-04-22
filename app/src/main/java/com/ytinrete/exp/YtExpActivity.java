@@ -1,9 +1,11 @@
 package com.ytinrete.exp;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -88,6 +90,34 @@ public class YtExpActivity extends YtBaseActivity {
 
     ButterKnife.bind(this);
 
+
+  }
+
+
+//  private static Uri changHost(Uri uri, String hostNew) {
+//
+//    if (uri == null || TextUtils.isEmpty(hostNew)) {
+//      return uri;
+//    }
+//    String schme = uri.getScheme();
+//    String path = uri.getPath();
+//    String str = "";
+//    if (!TextUtils.isEmpty(path)) {
+//      str = schme + "://" + hostNew + "?" + path;
+//    }
+//    return Uri.parse(str);
+//  }
+
+
+  private static Uri changHost(Uri uri, String hostNew) {
+    Uri.Builder uriBuilder = new Uri.Builder()
+        .scheme(uri.getScheme())
+        .path(uri.getPath())
+        .authority(hostNew);
+    for (String name : uri.getQueryParameterNames()) {
+      uriBuilder.appendQueryParameter(name, uri.getQueryParameter(name));
+    }
+    return uriBuilder.build();
   }
 
   @OnClick(R.id.btn1)
@@ -95,6 +125,12 @@ public class YtExpActivity extends YtBaseActivity {
     showShortToast("btn1");
 
     if (true) {
+
+
+      String str = "fooo://bar.com/aaa/bbb?ccc=123&ddd=456";
+      Uri tempUri0 = Uri.parse(str);
+      Log.d("lirui", "onCreate: " + changHost(tempUri0, "bar2.net").toString());
+
 
 //      startActivity(new Intent(YtExpActivity.this, YtMusicActivity.class));
 
