@@ -56,13 +56,13 @@ public class MtpMasterActivity extends YtBaseActivity {
         + SingletonTest.getInstance().getStr());
 
     Intent intentAidl = new Intent("com.ytinrete.android.lab.aidl");
-    intentAidl.setPackage("com.ytinrete.android.lab");// must
+    intentAidl.setPackage("com.ytinrete.android.lab.mtp");// must
     bindService(intentAidl, serviceConnection, Context.BIND_AUTO_CREATE);
 
 
     Intent intentMessenger = new Intent();
     intentMessenger.setClass(this, MtpSlaveMessengerService.class);
-    intentMessenger.setPackage("com.ytinrete.android.lab");// must
+    intentMessenger.setPackage("com.ytinrete.android.lab.mtp");// must
     bindService(intentMessenger, mConn, Context.BIND_AUTO_CREATE);
   }
 
@@ -210,6 +210,10 @@ public class MtpMasterActivity extends YtBaseActivity {
     if (aidl != null) {
       aidl = null;
       unbindService(serviceConnection);
+    }
+
+    if(mService!=null){
+      unbindService(mConn);
     }
 
     super.onDestroy();

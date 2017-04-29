@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:label="MultiProccess"
+        tools:replace="android:label">
+
+        <!-- multi process -->
+        <provider
+            android:name="com.ytinrete.multiproccess.MtpMasterProvider"
+            android:authorities="com.ytinrete.content"
+            android:exported="false"/>
+
+        <activity
+            android:name="com.ytinrete.multiproccess.MtpMasterActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|layoutDirection"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name="com.ytinrete.multiproccess.MtpSlaveService"
+            android:exported="false"
+            android:process=":slave">
+            <intent-filter>
+                <action android:name="com.ytinrete.android.lab.aidl"/>
+            </intent-filter>
+
+        </service>
+
+        <service
+            android:name="com.ytinrete.multiproccess.MtpSlaveMessengerService"
+            android:exported="false"
+            android:process=":slave">
+
+        </service>
+
+
+        <activity
+            android:name="com.ytinrete.multiproccess.MtpSlaveActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|layoutDirection"
+            android:process=":slave"
+            android:screenOrientation="portrait"/>
+
+
+    </application>
+
+</manifest>

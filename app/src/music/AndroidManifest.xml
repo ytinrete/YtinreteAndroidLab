@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:label="Music"
+        tools:replace="android:label">
+
+        <!-- music -->
+        <activity
+            android:name="com.ytinrete.music.view.YtMusicActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait"
+            android:taskAffinity="com.ytinrete.android.lab.music_screen"
+            android:theme="@style/AppTheme.NoActionBar">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+
+        </activity>
+
+        <service
+            android:name="com.ytinrete.music.service.YtMusicService"
+            android:enabled="true"/>
+
+
+    </application>
+
+</manifest>

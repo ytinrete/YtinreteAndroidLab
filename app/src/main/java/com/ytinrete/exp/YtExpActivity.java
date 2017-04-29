@@ -11,11 +11,10 @@ import android.widget.TextView;
 
 import com.ytinrete.android.lab.R;
 import com.ytinrete.base.YtBaseActivity;
-import com.ytinrete.db.orm.OrmMusicFileFolder;
-import com.ytinrete.db.orm.OrmMusicFileItem;
-import com.ytinrete.dto.DtoMusicFileFolder;
-import com.ytinrete.dto.DtoMusicFileItem;
-import com.ytinrete.multiproccess.MtpMasterActivity;
+//import com.ytinrete.db.orm.OrmMusicFileFolder;
+//import com.ytinrete.db.orm.OrmMusicFileItem;
+//import com.ytinrete.dto.DtoMusicFileFolder;
+//import com.ytinrete.dto.DtoMusicFileItem;
 import com.ytinrete.tools.AppLog;
 import com.ytinrete.widegt.FilePickerDialog;
 
@@ -25,8 +24,8 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import io.realm.Realm;
-import io.realm.RealmResults;
+//import io.realm.Realm;
+//import io.realm.RealmResults;
 
 /**
  * 实验用activity
@@ -134,7 +133,6 @@ public class YtExpActivity extends YtBaseActivity {
 
 //      startActivity(new Intent(YtExpActivity.this, YtMusicActivity.class));
 
-      startActivity(new Intent(YtExpActivity.this, MtpMasterActivity.class));
 
       return;
     }
@@ -206,71 +204,71 @@ public class YtExpActivity extends YtBaseActivity {
   }
 
 
-  private ArrayList<DtoMusicFileFolder> scan(String root) {
-
-    Realm realm = Realm.getDefaultInstance();
-
-    if (TextUtils.isEmpty(root)) {
-      return null;
-    }
-    int rootLength = root.length();
-
-    ArrayList<DtoMusicFileFolder> folders = new ArrayList<>();
-
-    realm.beginTransaction();
-
-    File rootFile = new File(root);
-    if (rootFile.exists() && rootFile.isDirectory() && rootFile.listFiles() != null) {
-      for (File f : rootFile.listFiles()) {
-        if (f.isDirectory()) {
-          //根目录下只找二级目录，忽略文件
-          DtoMusicFileFolder newFolder = new DtoMusicFileFolder();
-          newFolder.setFullPath(f.getAbsolutePath());
-          newFolder.setRelativePath(f.getAbsolutePath().substring(rootLength));
-          newFolder.setFolderName(f.getName());
-          newFolder.setFiles(new ArrayList<DtoMusicFileItem>());
-
-
-          OrmMusicFileFolder ormFolder = realm.createObject(OrmMusicFileFolder.class);
-          ormFolder.setRelativePath(newFolder.getRelativePath());
-          ormFolder.setFolderName(newFolder.getFolderName());
-          ormFolder.setFullPath(newFolder.getFullPath());
-
-
-          if (f.listFiles() != null) {
-            for (File subFile : f.listFiles()) {
-              DtoMusicFileItem newFile = new DtoMusicFileItem();
-              newFile.setFullPath(subFile.getAbsolutePath());
-              newFile.setRelativePath(subFile.getAbsolutePath().substring(rootLength));
-              newFile.setFileName(subFile.getName());
-
-              OrmMusicFileItem ormFile = realm.createObject(OrmMusicFileItem.class);
-              ormFile.setFullPath(newFile.getFullPath());
-              ormFile.setRelativePath(newFile.getRelativePath());
-              ormFile.setFineName(newFile.getFileName());
-
-              ormFolder.getFiles().add(ormFile);
-
-              newFolder.getFiles().add(newFile);
-            }
-          }
-
-          folders.add(newFolder);
-        }
-      }
-    }
-    realm.commitTransaction();
-
-    AppLog.d("scan done");
-    return folders;
-  }
+//  private ArrayList<DtoMusicFileFolder> scan(String root) {
+//
+//    Realm realm = Realm.getDefaultInstance();
+//
+//    if (TextUtils.isEmpty(root)) {
+//      return null;
+//    }
+//    int rootLength = root.length();
+//
+//    ArrayList<DtoMusicFileFolder> folders = new ArrayList<>();
+//
+//    realm.beginTransaction();
+//
+//    File rootFile = new File(root);
+//    if (rootFile.exists() && rootFile.isDirectory() && rootFile.listFiles() != null) {
+//      for (File f : rootFile.listFiles()) {
+//        if (f.isDirectory()) {
+//          //根目录下只找二级目录，忽略文件
+//          DtoMusicFileFolder newFolder = new DtoMusicFileFolder();
+//          newFolder.setFullPath(f.getAbsolutePath());
+//          newFolder.setRelativePath(f.getAbsolutePath().substring(rootLength));
+//          newFolder.setFolderName(f.getName());
+//          newFolder.setFiles(new ArrayList<DtoMusicFileItem>());
+//
+//
+//          OrmMusicFileFolder ormFolder = realm.createObject(OrmMusicFileFolder.class);
+//          ormFolder.setRelativePath(newFolder.getRelativePath());
+//          ormFolder.setFolderName(newFolder.getFolderName());
+//          ormFolder.setFullPath(newFolder.getFullPath());
+//
+//
+//          if (f.listFiles() != null) {
+//            for (File subFile : f.listFiles()) {
+//              DtoMusicFileItem newFile = new DtoMusicFileItem();
+//              newFile.setFullPath(subFile.getAbsolutePath());
+//              newFile.setRelativePath(subFile.getAbsolutePath().substring(rootLength));
+//              newFile.setFileName(subFile.getName());
+//
+//              OrmMusicFileItem ormFile = realm.createObject(OrmMusicFileItem.class);
+//              ormFile.setFullPath(newFile.getFullPath());
+//              ormFile.setRelativePath(newFile.getRelativePath());
+//              ormFile.setFineName(newFile.getFileName());
+//
+//              ormFolder.getFiles().add(ormFile);
+//
+//              newFolder.getFiles().add(newFile);
+//            }
+//          }
+//
+//          folders.add(newFolder);
+//        }
+//      }
+//    }
+//    realm.commitTransaction();
+//
+//    AppLog.d("scan done");
+//    return folders;
+//  }
 
 
   @OnClick(R.id.btn2)
   public void onClick2() {
     showShortToast("btn2");
 
-    ArrayList<DtoMusicFileFolder> folders = scan(testRes.getRes());
+//    ArrayList<DtoMusicFileFolder> folders = scan(testRes.getRes());
 
 
 //    HttpHelper.newCall(new MessageBoardGetListRequest()).enqueue(new StringCallback() {
@@ -308,15 +306,15 @@ public class YtExpActivity extends YtBaseActivity {
   public void onClick3() {
     showShortToast("btn3");
 
-    Realm realm = Realm.getDefaultInstance();
-
-    final RealmResults<OrmMusicFileFolder> fs = realm.where(OrmMusicFileFolder.class).findAll();
-
-
-    for (OrmMusicFileFolder f : fs) {
-      AppLog.d(f.getFolderName());
-
-    }
+//    Realm realm = Realm.getDefaultInstance();
+//
+//    final RealmResults<OrmMusicFileFolder> fs = realm.where(OrmMusicFileFolder.class).findAll();
+//
+//
+//    for (OrmMusicFileFolder f : fs) {
+//      AppLog.d(f.getFolderName());
+//
+//    }
 
 //    realm.executeTransaction(new Realm.Transaction() {
 //      @Override
@@ -341,23 +339,23 @@ public class YtExpActivity extends YtBaseActivity {
   public void onClick4() {
     showShortToast("btn4");
 
-    Realm realm = Realm.getDefaultInstance();
-
-    realm.executeTransaction(new Realm.Transaction() {
-      @Override
-      public void execute(Realm realm) {
-
-
-        RealmResults<OrmMusicFileFolder> fs = realm.where(OrmMusicFileFolder.class).findAll();
-
-        for (OrmMusicFileFolder f : fs) {
-          f.getFiles().deleteAllFromRealm();
-
-        }
-
-        fs.deleteAllFromRealm();
-      }
-    });
+//    Realm realm = Realm.getDefaultInstance();
+//
+//    realm.executeTransaction(new Realm.Transaction() {
+//      @Override
+//      public void execute(Realm realm) {
+//
+//
+//        RealmResults<OrmMusicFileFolder> fs = realm.where(OrmMusicFileFolder.class).findAll();
+//
+//        for (OrmMusicFileFolder f : fs) {
+//          f.getFiles().deleteAllFromRealm();
+//
+//        }
+//
+//        fs.deleteAllFromRealm();
+//      }
+//    });
 
 
 //    Message msg = new Message();

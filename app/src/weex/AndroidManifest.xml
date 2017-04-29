@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:label="Weex"
+        tools:replace="android:label">
+
+        <activity
+            android:name="com.ytinrete.weex.MainActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|layoutDirection"
+            android:screenOrientation="portrait">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+
+        </activity>
+
+        <activity
+            android:name="com.ytinrete.weex.WeexActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|layoutDirection"
+            android:screenOrientation="portrait">
+
+        </activity>
+
+
+        <activity
+            android:name="com.ytinrete.weex.WeexFragmentActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|layoutDirection"
+            android:screenOrientation="portrait">
+
+
+        </activity>
+
+
+    </application>
+
+</manifest>
