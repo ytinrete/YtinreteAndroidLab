@@ -44,9 +44,16 @@ public class MtpMasterProvider extends ContentProvider {
     return null;
   }
 
+
   private class InfoCursor extends AbstractCursor {
 
-    private String colNames[] = new String[]{"int", "str"};
+    @Override
+    public int getType(int column) {
+
+      return super.getType(column);
+    }
+
+    private String colNames[] = new String[]{"str", "long", "double"};
 
     @Override
     public int getCount() {
@@ -80,17 +87,17 @@ public class MtpMasterProvider extends ContentProvider {
     @Override
     public int getInt(int column) {
       l.md("getInt:" + column);
-      if (column >= 0 && column < colNames.length) {
-        if ("int".equals(colNames[column])) {
-          return SingletonTest.getInstance().getAnInt();
-        }
-      }
       return 0;
     }
 
     @Override
     public long getLong(int column) {
       l.md("getLong:");
+      if (column >= 0 && column < colNames.length) {
+        if ("long".equals(colNames[column])) {
+          return SingletonTest.getInstance().getAnInt();
+        }
+      }
       return 0;
     }
 
@@ -103,6 +110,11 @@ public class MtpMasterProvider extends ContentProvider {
     @Override
     public double getDouble(int column) {
       l.md("getDouble:");
+      if (column >= 0 && column < colNames.length) {
+        if ("double".equals(colNames[column])) {
+          return -111.222;
+        }
+      }
       return 0;
     }
 
