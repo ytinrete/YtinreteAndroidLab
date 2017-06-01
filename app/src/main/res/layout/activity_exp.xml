@@ -86,4 +86,10 @@
         </LinearLayout>
     </ScrollView>
 
+    <com.ytinrete.view.NotInterceptTouchFrameLayout
+        android:id="@+id/mask"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </com.ytinrete.view.NotInterceptTouchFrameLayout>
+
 </FrameLayout>

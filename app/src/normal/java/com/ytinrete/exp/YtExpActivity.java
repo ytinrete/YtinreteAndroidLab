@@ -1,12 +1,18 @@
 package com.ytinrete.exp;
 
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.ytinrete.android.lab.R;
@@ -16,6 +22,7 @@ import com.ytinrete.base.YtBaseActivity;
 //import com.ytinrete.dto.DtoMusicFileFolder;
 //import com.ytinrete.dto.DtoMusicFileItem;
 import com.ytinrete.tools.AppLog;
+import com.ytinrete.view.NotInterceptTouchFrameLayout;
 import com.ytinrete.widegt.FilePickerDialog;
 
 import java.io.File;
@@ -32,6 +39,8 @@ import butterknife.OnClick;
  */
 
 public class YtExpActivity extends YtBaseActivity {
+
+  String TAG = "lirui";
 
 
   FilePickerDialog.FilePickerRes testRes = new FilePickerDialog.FilePickerRes();
@@ -81,6 +90,8 @@ public class YtExpActivity extends YtBaseActivity {
   @BindView(R.id.tv5)
   TextView tv5;
 
+  @BindView(R.id.mask)
+  NotInterceptTouchFrameLayout mask;
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -89,8 +100,41 @@ public class YtExpActivity extends YtBaseActivity {
 
     ButterKnife.bind(this);
 
+    sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+    vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
 
   }
+
+  private SensorManager sensorManager;
+  private Vibrator vibrator;
+
+
+  private SensorEventListener sensorEventListener = new SensorEventListener() {
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+
+      // 传感器信息改变时执行该方法
+      float[] values = event.values;
+      float x = values[0]; // x轴方向的重力加速度，向右为正
+      float y = values[1]; // y轴方向的重力加速度，向前为正
+      float z = values[2]; // z轴方向的重力加速度，向上为正
+      Log.i(TAG, "x轴方向的重力加速度" + x +  "；y轴方向的重力加速度" + y +  "；z轴方向的重力加速度" + z);
+      // 一般在这三个方向的重力加速度达到40就达到了摇晃手机的状态。
+      int medumValue = 19;// 如果不敏感请自行调低该数值,低于10的话就不行了,因为z轴上的加速度本身就已经达到10了
+      if (Math.abs(x) > medumValue || Math.abs(y) > medumValue || Math.abs(z) > medumValue) {
+        vibrator.vibrate(200);
+
+        Log.d(TAG, "onSensorChanged: !!!!!");
+
+      }
+
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+    }
+  };
 
 
 //  private static Uri changHost(Uri uri, String hostNew) {
@@ -107,6 +151,10 @@ public class YtExpActivity extends YtBaseActivity {
 //    return Uri.parse(str);
 //  }
 
+  @OnClick(R.id.mask)
+  public void maskClick(){
+    Log.d(TAG, "maskClick: ");
+  }
 
   private static Uri changHost(Uri uri, String hostNew) {
     Uri.Builder uriBuilder = new Uri.Builder()
@@ -267,6 +315,13 @@ public class YtExpActivity extends YtBaseActivity {
   @OnClick(R.id.btn2)
   public void onClick2() {
     showShortToast("btn2");
+
+    if(sensorManager!=null){
+      sensorManager.registerListener(sensorEventListener,
+          sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+          SensorManager.SENSOR_DELAY_NORMAL);
+      // 第一个参数是Listener，第二个参数是所得传感器类型，第三个参数值获取传感器信息的频率
+    }
 
 //    ArrayList<DtoMusicFileFolder> folders = scan(testRes.getRes());
 

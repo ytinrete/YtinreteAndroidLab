@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.VIBRATE"/>
+
 
     <application
         android:label="Normal"
@@ -19,6 +21,9 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name="com.ytinrete.exp.YtExpActivity"
+            android:screenOrientation="portrait"/>
 
     </application>
 
