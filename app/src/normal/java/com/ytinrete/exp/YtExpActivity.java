@@ -21,6 +21,7 @@ import com.ytinrete.base.YtBaseActivity;
 //import com.ytinrete.db.orm.OrmMusicFileItem;
 //import com.ytinrete.dto.DtoMusicFileFolder;
 //import com.ytinrete.dto.DtoMusicFileItem;
+import com.ytinrete.normal.NormalTest1Activity;
 import com.ytinrete.tools.AppLog;
 import com.ytinrete.view.NotInterceptTouchFrameLayout;
 import com.ytinrete.widegt.FilePickerDialog;
@@ -437,6 +438,8 @@ public class YtExpActivity extends YtBaseActivity {
 ////    bd.putString("url", "/storage/emulated/0/Download/alice.mp3");
 //    msg.setData(bd);
 //    YtMusicService.sendMsg(msg);
+
+    startActivity(new Intent(YtExpActivity.this, NormalTest1Activity.class));
 
 
     AppLog.d("end btn");

@@ -24,6 +24,9 @@
         <activity
             android:name="com.ytinrete.exp.YtExpActivity"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.ytinrete.normal.NormalTest1Activity"
+            android:screenOrientation="portrait"/>
 
     </application>
 
