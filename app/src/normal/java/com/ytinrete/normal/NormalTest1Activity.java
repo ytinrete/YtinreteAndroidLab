@@ -1,14 +1,22 @@
 package com.ytinrete.normal;
 
 import android.os.Bundle;
+import android.os.Process;
 import android.support.annotation.Nullable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.ytinrete.android.lab.R;
 import com.ytinrete.base.YtBaseActivity;
 import com.ytinrete.tools.EnhancedSpannableStringBuilder;
+
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 
 /**
  *
@@ -47,6 +55,49 @@ public class NormalTest1Activity extends YtBaseActivity {
 
     tv1.setText(b1);
     tv2.setText(b2);
+
+    cmd();
+
+    readFile();
+  }
+
+  private void readFile() {
+
+    File f = new File("/proc/net/tcp");
+    if(f.exists()){
+      try{
+        BufferedReader stdInput = new BufferedReader(new
+            InputStreamReader(new FileInputStream(f)));
+        Log.d("xxxx", "file res:\n");
+        String s = null;
+        while ((s = stdInput.readLine()) != null) {
+          Log.d("xxxx", s);
+        }
+      }catch (Exception e){
+        e.printStackTrace();
+      }
+    }
+
+  }
+
+
+  private void cmd(){
+    try{
+      Runtime runtime = Runtime.getRuntime();
+      java.lang.Process proc = runtime.exec("cat /proc/net/tcp");
+      if (proc == null) {
+        throw new NullPointerException();
+      }
+      BufferedReader stdInput = new BufferedReader(new
+          InputStreamReader(proc.getInputStream()));
+      Log.d("xxxx", "cmd res:\n");
+      String s = null;
+      while ((s = stdInput.readLine()) != null) {
+        Log.d("xxxx", s);
+      }
+    }catch (Exception e){
+      e.printStackTrace();
+    }
 
   }
 
