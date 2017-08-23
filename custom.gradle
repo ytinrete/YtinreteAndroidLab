@@ -1,0 +1,40 @@
+import groovy.transform.Field
+
+println "KKKKK"
+
+
+static def checkGitTag(String tag) {
+    String commit = null;
+    try {
+        Process proc = Runtime.getRuntime().exec("git rev-parse -q --verify refs/tags/${tag}");
+        BufferedReader read = new BufferedReader(new InputStreamReader(
+                proc.getInputStream()));
+        try {
+            proc.waitFor();
+        } catch (InterruptedException e) {
+            System.out.println(e.getMessage());
+        }
+        while (read.ready()) {
+            commit = read.readLine();
+        }
+    } catch (IOException e) {
+        System.out.println(e.getMessage());
+    }
+    return commit != null
+}
+
+@Field def aaa = "1"
+
+def printA(){
+    println aaa
+}
+
+task test1 {
+    doLast {
+        println aaa
+
+//        printA()
+
+//        println checkGitTag("rn")
+    }
+}
